@@ -1,0 +1,93 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.6 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{none/global}
+    \entry{algebra}{book}{}
+      \name{author}{1}{}{%
+        {{hash=fc6e6d1b221093ed8182e076c47f0d33}{%
+           family={Hardy},
+           family_i={H\bibinitperiod},
+           given={Kenneth},
+           given_i={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Prentice Hall}%
+      }
+      \strng{namehash}{fc6e6d1b221093ed8182e076c47f0d33}
+      \strng{fullhash}{fc6e6d1b221093ed8182e076c47f0d33}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Linear Algebra for Engineers and Scientists}
+      \field{volume}{1}
+      \field{year}{2005}
+    \endentry
+    \entry{kalkulus}{book}{}
+      \name{author}{1}{}{%
+        {{hash=48276aa4bb7639bf0aef1cdb2cbf06ef}{%
+           family={Lindstrom},
+           family_i={L\bibinitperiod},
+           given={Tom},
+           given_i={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {universitetsforlaget}%
+      }
+      \strng{namehash}{48276aa4bb7639bf0aef1cdb2cbf06ef}
+      \strng{fullhash}{48276aa4bb7639bf0aef1cdb2cbf06ef}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Kalkulus}
+      \field{volume}{1}
+      \field{year}{2006}
+    \endentry
+    \entry{prob}{book}{}
+      \name{author}{2}{}{%
+        {{hash=de2194dc4268ad01c5bfcbec6e770eb5}{%
+           family={Blitzstein},
+           family_i={B\bibinitperiod},
+           given={Joseph\bibnamedelima K},
+           given_i={J\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=57f3f25f58a60f557d446fcf3a27d81b}{%
+           family={Hwang},
+           family_i={H\bibinitperiod},
+           given={Jessica},
+           given_i={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {CRC Press}%
+      }
+      \strng{namehash}{0c887664e7ae500c7d56095d3d663df8}
+      \strng{fullhash}{0c887664e7ae500c7d56095d3d663df8}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Introduction to Probability}
+      \field{volume}{1}
+      \field{year}{2015}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

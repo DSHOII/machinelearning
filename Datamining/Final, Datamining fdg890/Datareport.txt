@@ -1,0 +1,57 @@
+# Output for datamining assigntment. Jonathan Hansen,fdg890 #
+
+
+Samplemean for Redshift_Train_Y:
+0.1555464000000001
+
+
+Biased sample variance for RedShift_Train_Y:
+0.013672159847040004
+
+
+Model parameters for Redshift_Train:
+[[-0.00598922]
+ [ 0.10965194]
+ [ 0.27844859]
+ [-0.00183018]
+ [ 0.00935054]
+ [-0.00863705]
+ [ 0.00414825]
+ [-0.10749617]
+ [-0.0098086 ]
+ [ 0.04078572]
+ [-0.88069336]]
+
+
+MSE for Redshift_Train
+[[ 0.00280929]]
+
+
+Samplemean for Redshift_Test_Y:
+0.15564839999999994
+
+
+Biased sample variance for RedShift_Test_Y:
+0.014714027977439996
+
+
+MSE for Redshift_Test:
+[[ 0.00319585]]
+
+Perfomance of 1NN:
+336
+157
+98.125
+
+
+Performance of PCA:
+(7, 92.023183371595778)
+
+
+Performance of 2-mean clustering:
+(304, 21)
+(336, 21)
+4
+22.6529126397
+53.114620943
+

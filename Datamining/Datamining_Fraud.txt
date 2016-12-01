@@ -1,0 +1,16 @@
+Perfomance of 1NN:
+336
+157
+98.125
+
+
+Performance of PCA:
+(7, 92.023183371595778)
+
+
+Performance of 2-mean clustering:
+(304, 21)
+(336, 21)
+4
+22.6529126397
+53.114620943

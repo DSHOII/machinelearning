@@ -31,7 +31,7 @@ def minDistance(matrix,vector):
 		else:
 			dmin = dmin
 			imin = imin
-	
+
 	return imin
 
 #1NN model: Compares dependable variables between two matrices.

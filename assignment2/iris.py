@@ -2,14 +2,7 @@ import numpy as np
 import pandas as pd
 #import matplotlib.pyplot as plt
 
-# f = open('IrisTrainML.dt', 'r')
-
-# data = f.read()
-# f.close
-
-# print(data)
-
-# Location varialbe for trainging and test data
+# Location variable for training and test data
 locationTrain = 'IrisTrainML.dt'
 locationTest = 'IrisTestML.dt'
 
@@ -90,11 +83,67 @@ def zeroOneLoss(matrix1X, matrix1Y, matrix2X, matrix2Y, k):
         return zeroOneLoss
 
 
+# Computing error on training and test data for 1NN, 3NN and 5NN
+# train1NN = zeroOneLoss(irisTrainX, irisTrainY, irisTrainX, irisTrainY, 1)
+# train3NN = zeroOneLoss(irisTrainX, irisTrainY, irisTrainX, irisTrainY, 3)
+# train5NN = zeroOneLoss(irisTrainX, irisTrainY, irisTrainX, irisTrainY, 5)
+# test1NN = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 1)
+# test3NN = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 3)
+# test5NN = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 5)
 
-john = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 5)
-print(john)
 
-# print(len(irisTrainX))
-# print(len(irisTrainY))
-# print(len(irisTestX))
-# print(len(irisTestY))
+# Printing error results
+# print('Number of training cases is ' + str(len(irisTrainX)))
+# print('Number of test cases is ' + str(len(irisTestX)) + '\n')
+
+# print('1-nearest neighbor training error: ' + str(train1NN))
+# print('3-nearest neighbor training error: ' + str(train3NN))
+# print('5-nearest neighbor training error: ' + str(train5NN))
+# print('1-nearest neighbor testing error: ' + str(test1NN))
+# print('3-nearest neighbor testing error: ' + str(test3NN))
+# print('5-nearest neighbor testing error: ' + str(test5NN))
+
+# General data splitting function for crossvalidation. Dataframe as input
+# Assumes category/class as the single, last coloumn
+def splitter(dataframe, k):
+        vectorLength = ((dataframe.shape)[1]) - 1
+        dataMatrix = dataframe.as_matrix()
+        splitMatrix = np.array_split(dataMatrix, k)
+        return splitMatrix
+
+
+# Combining split data back into new traning and test sets
+splitMatrix = splitter(dfTrain, 5)
+
+crossValTrain1 = np.vstack((splitMatrix[0], splitMatrix[1],
+                            splitMatrix[2], splitMatrix[3]))
+
+crossValTest1 = splitMatrix[4]
+
+crossValTrain2 = np.vstack((splitMatrix[1], splitMatrix[2],
+                            splitMatrix[3], splitMatrix[4]))
+
+crossValTest2 = splitMatrix[0]
+
+crossValTrain3 = np.vstack((splitMatrix[2], splitMatrix[3],
+                            splitMatrix[4], splitMatrix[0]))
+
+crossValTest3 = splitMatrix[1]
+
+crossValTrain4 = np.vstack((splitMatrix[3], splitMatrix[4],
+                            splitMatrix[0], splitMatrix[1]))
+
+crossValTest4 = splitMatrix[2]
+
+crossValTrain5 = np.vstack((splitMatrix[4], splitMatrix[0],
+                            splitMatrix[1], splitMatrix[2]))
+
+crossValTest5 = splitMatrix[3]
+
+
+# kNN using cross validation
+def kNNCross(
+
+
+x2 = np.hsplit(crossValTest5, np.array([2]))
+

@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as mpl
 
 
 #___________________________Zero-one loss kNN-model____________________________#
@@ -172,14 +172,28 @@ def kNNCross():
 
         return resM[[1,3,5,7,9,11,13,15,17,19,21,23,25],:]
 
-# Computing average loss for each fold
+# Computing average loss for each fold.
+allLoss = kNNCross()
+averageLoss = allLoss.mean(1)
 
+# Creating dataset for k-values for plotting.
+kValues = np.array([1,3,5,7,9,11,13,15,17,19,21,23,25])
 
+kAverageLoss = np.dstack((kValues, averageLoss))[0]
 
+# Plotting average loss as a function of value of k.
+# mpl.figure(1)
+# mpl.plot(kValues,averageLoss,"bo")
+# mpl.xlim([0,28])
+# mpl.ylim([0,0.3])
+# mpl.xlabel("k")
+# mpl.ylabel("Average loss")
+# mpl.title("Average kNN-model loss")
+# mpl.show()
 
-brit = kNNCross()
-print(brit)
+# Repporting results of k_best-NN.
+performance = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 3)
 
-john = cVTest5[:,[2]]
-carsten = cVTest5[:,[0,1]]
+print('3NN zero-one loss on test data: ' + str(performance))
+
 

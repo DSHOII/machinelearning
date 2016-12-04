@@ -109,7 +109,7 @@ def zeroOneLoss(matrix1X, matrix1Y, matrix2X, matrix2Y, k):
 
 #______________________5-fold cross-validation________________________________#
 # This solution is largely hard coded, since I could not come up with a good
-# way of iterate through both he 5-fold cross validation and the different k's.
+# way of iterating through the 5-fold cross validation and the different k's.
 
 
 # General data splitting function for crossvalidation. Dataframe as input
@@ -196,4 +196,123 @@ performance = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 3)
 
 print('3NN zero-one loss on test data: ' + str(performance))
 
+
+#____________________________Data normalization________________________________#
+
+
+# Computing mean, variance  and standard deveation of training data features.
+sepalMean = irisTrainX.mean(0)
+sepalVar = irisTrainX.var(0)
+sepalStd = irisTrainX.std(0)
+
+# Transforming test data using feature standardization.
+zeroMeanTrainX = np.subtract(irisTrainX, sepalMean)
+zeroMeanTrainXMean = zeroMeanTrainX.mean(0)
+standardizedTrainX = np.divide(zeroMeanTrainX, sepalStd)
+
+sepalNormMeanTrain = standardizedTrainX.mean(0)
+sepalNormVarTrain = standardizedTrainX.var(0)
+
+# Reporting mean, var and std before and after transformation.
+# print('Mean in raw data: ' + str(sepalMean) + '\n')
+# print('Variance in raw data: ' + str(sepalVar) + '\n')
+# print('Mean after standardization: ' + str(sepalNormMeanTrain) + '\n')
+# print('Variance after standardization: ' + str(sepalNormVarTrain) + '\n')
+
+
+# Transforming test data.
+zeroMeanTestX = np.subtract(irisTestX, sepalMean)
+zeroMeanTestXMean = zeroMeanTestX.mean(0)
+standardizedTestX = np.divide(zeroMeanTestX, sepalStd)
+
+sepalNormMeanTest = standardizedTestX.mean(0)
+sepalNormVarTest = standardizedTestX.var(0)
+
+# print('Test data mean after standardization: ' + str(sepalNormMeanTest) + '\n')
+# print('Test data variance after standardization: ' + str(sepalNormVarTest))
+
+# Performing 5-fold cross validation again.
+# Merging transformed training data with categorie/classes
+standardizedTrainML = np.hstack((standardizedTrainX, irisTrainY))
+
+
+# Create Pandas dataframe from normalized train data to split it.
+dfNormTrain = pd.DataFrame(standardizedTrainML)
+
+
+# Combining split normalized data back into new traning and test sets
+splitNormMatrix = splitter(dfNormTrain, 5)
+
+cVTrain6 = np.vstack((splitNormMatrix[0], splitNormMatrix[1],
+                            splitNormMatrix[2], splitNormMatrix[3]))
+
+cVTest6 = splitNormMatrix[4]
+
+cVTrain7 = np.vstack((splitNormMatrix[1], splitNormMatrix[2],
+                            splitNormMatrix[3], splitNormMatrix[4]))
+
+cVTest7 = splitNormMatrix[0]
+
+cVTrain8 = np.vstack((splitNormMatrix[2], splitNormMatrix[3],
+                            splitNormMatrix[4], splitNormMatrix[0]))
+
+cVTest8 = splitNormMatrix[1]
+
+cVTrain9 = np.vstack((splitNormMatrix[3], splitNormMatrix[4],
+                            splitNormMatrix[0], splitNormMatrix[1]))
+
+cVTest9 = splitNormMatrix[2]
+
+cVTrain10 = np.vstack((splitNormMatrix[4], splitNormMatrix[0],
+                            splitNormMatrix[1], splitNormMatrix[2]))
+
+cVTest10= splitNormMatrix[3]
+
+# Creating a variable to hold results of 5-fold cross validation
+resNorM = np.zeros([26, 5])
+
+
+# A single fold of the k-nearest neighbor cross validation.
+def kNNCrossNorm():
+        for i in range(1, 26, 2):
+                resNorM[i,0] = zeroOneLoss(cVTrain6[:,[0,1]], cVTrain6[:,[2]],
+                                        cVTest6[:,[0,1]], cVTest6[:,[2]], i)
+                resNorM[i,1] = zeroOneLoss(cVTrain7[:,[0,1]], cVTrain7[:,[2]],
+                                        cVTest7[:,[0,1]], cVTest7[:,[2]], i)
+                resNorM[i,2] = zeroOneLoss(cVTrain8[:,[0,1]], cVTrain8[:,[2]],
+                                        cVTest8[:,[0,1]], cVTest8[:,[2]], i)
+                resNorM[i,3] = zeroOneLoss(cVTrain9[:,[0,1]], cVTrain9[:,[2]],
+                                        cVTest9[:,[0,1]], cVTest9[:,[2]], i)
+                resNorM[i,4] = zeroOneLoss(cVTrain10[:,[0,1]], cVTrain10[:,[2]],
+                                        cVTest10[:,[0,1]], cVTest10[:,[2]], i)
+
+
+
+        return resNorM[[1,3,5,7,9,11,13,15,17,19,21,23,25],:]
+
+
+# Computing average loss for each fold.
+allLossNorm = kNNCrossNorm()
+averageLossNorm = allLossNorm.mean(1)
+
+# Creating dataset of k-values for plotting.
+kValuesNorm = np.array([1,3,5,7,9,11,13,15,17,19,21,23,25])
+
+kAverageLossNorm = np.dstack((kValuesNorm, averageLossNorm))[0]
+
+# #Plotting average loss as a function of value of k of normalized data.
+# mpl.figure(2)
+# mpl.plot(kValuesNorm,averageLossNorm,"bo")
+# mpl.xlim([0,28])
+# mpl.ylim([0,0.3])
+# mpl.xlabel("k")
+# mpl.ylabel("Average loss")
+# mpl.title("Average kNN-model loss on normalized data")
+# mpl.show()
+
+# Reporting results of k_best-NN.
+performanceNorm = zeroOneLoss(standardizedTrainX, irisTrainY, standardizedTestX,
+                              irisTestY, 11)
+
+print('11NN zero-one loss on normalized test data: ' + str(performanceNorm))
 

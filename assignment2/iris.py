@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 #import matplotlib.pyplot as plt
 
+
+#___________________________Zero-one loss kNN-model____________________________#
+
 # Location variable for training and test data
 locationTrain = 'IrisTrainML.dt'
 locationTest = 'IrisTestML.dt'
@@ -103,6 +106,12 @@ def zeroOneLoss(matrix1X, matrix1Y, matrix2X, matrix2Y, k):
 # print('3-nearest neighbor testing error: ' + str(test3NN))
 # print('5-nearest neighbor testing error: ' + str(test5NN))
 
+
+#______________________5-fold cross-validation________________________________#
+# This solution is largely hard coded, since I could not come up with a good
+# way of iterate through both he 5-fold cross validation and the different k's.
+
+
 # General data splitting function for crossvalidation. Dataframe as input
 # Assumes category/class as the single, last coloumn
 def splitter(dataframe, k):
@@ -115,35 +124,62 @@ def splitter(dataframe, k):
 # Combining split data back into new traning and test sets
 splitMatrix = splitter(dfTrain, 5)
 
-crossValTrain1 = np.vstack((splitMatrix[0], splitMatrix[1],
+cVTrain1 = np.vstack((splitMatrix[0], splitMatrix[1],
                             splitMatrix[2], splitMatrix[3]))
 
-crossValTest1 = splitMatrix[4]
+cVTest1 = splitMatrix[4]
 
-crossValTrain2 = np.vstack((splitMatrix[1], splitMatrix[2],
+cVTrain2 = np.vstack((splitMatrix[1], splitMatrix[2],
                             splitMatrix[3], splitMatrix[4]))
 
-crossValTest2 = splitMatrix[0]
+cVTest2 = splitMatrix[0]
 
-crossValTrain3 = np.vstack((splitMatrix[2], splitMatrix[3],
+cVTrain3 = np.vstack((splitMatrix[2], splitMatrix[3],
                             splitMatrix[4], splitMatrix[0]))
 
-crossValTest3 = splitMatrix[1]
+cVTest3 = splitMatrix[1]
 
-crossValTrain4 = np.vstack((splitMatrix[3], splitMatrix[4],
+cVTrain4 = np.vstack((splitMatrix[3], splitMatrix[4],
                             splitMatrix[0], splitMatrix[1]))
 
-crossValTest4 = splitMatrix[2]
+cVTest4 = splitMatrix[2]
 
-crossValTrain5 = np.vstack((splitMatrix[4], splitMatrix[0],
+cVTrain5 = np.vstack((splitMatrix[4], splitMatrix[0],
                             splitMatrix[1], splitMatrix[2]))
 
-crossValTest5 = splitMatrix[3]
+cVTest5 = splitMatrix[3]
 
 
-# kNN using cross validation
-def kNNCross(
+# Creating a variable to hold results of 5-fold cross validation
+resM = np.zeros([26, 5])
 
 
-x2 = np.hsplit(crossValTest5, np.array([2]))
+# A single fold of the k-nearest neighbor cross validation.
+def kNNCross():
+        for i in range(1, 26, 2):
+                resM[i,0] = zeroOneLoss(cVTrain1[:,[0,1]], cVTrain1[:,[2]],
+                                        cVTest1[:,[0,1]], cVTest1[:,[2]], i)
+                resM[i,1] = zeroOneLoss(cVTrain2[:,[0,1]], cVTrain2[:,[2]],
+                                        cVTest2[:,[0,1]], cVTest2[:,[2]], i)
+                resM[i,2] = zeroOneLoss(cVTrain3[:,[0,1]], cVTrain3[:,[2]],
+                                        cVTest3[:,[0,1]], cVTest3[:,[2]], i)
+                resM[i,3] = zeroOneLoss(cVTrain4[:,[0,1]], cVTrain4[:,[2]],
+                                        cVTest4[:,[0,1]], cVTest4[:,[2]], i)
+                resM[i,4] = zeroOneLoss(cVTrain5[:,[0,1]], cVTrain5[:,[2]],
+                                        cVTest5[:,[0,1]], cVTest5[:,[2]], i)
+
+
+
+        return resM[[1,3,5,7,9,11,13,15,17,19,21,23,25],:]
+
+# Computing average loss for each fold
+
+
+
+
+brit = kNNCross()
+print(brit)
+
+john = cVTest5[:,[2]]
+carsten = cVTest5[:,[0,1]]
 

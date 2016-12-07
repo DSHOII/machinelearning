@@ -87,24 +87,24 @@ def zeroOneLoss(matrix1X, matrix1Y, matrix2X, matrix2Y, k):
 
 
 # Computing error on training and test data for 1NN, 3NN and 5NN
-# train1NN = zeroOneLoss(irisTrainX, irisTrainY, irisTrainX, irisTrainY, 1)
-# train3NN = zeroOneLoss(irisTrainX, irisTrainY, irisTrainX, irisTrainY, 3)
-# train5NN = zeroOneLoss(irisTrainX, irisTrainY, irisTrainX, irisTrainY, 5)
-# test1NN = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 1)
-# test3NN = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 3)
-# test5NN = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 5)
+train1NN = zeroOneLoss(irisTrainX, irisTrainY, irisTrainX, irisTrainY, 1)
+train3NN = zeroOneLoss(irisTrainX, irisTrainY, irisTrainX, irisTrainY, 3)
+train5NN = zeroOneLoss(irisTrainX, irisTrainY, irisTrainX, irisTrainY, 5)
+test1NN = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 1)
+test3NN = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 3)
+test5NN = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 5)
 
 
 # Printing error results
-# print('Number of training cases is ' + str(len(irisTrainX)))
-# print('Number of test cases is ' + str(len(irisTestX)) + '\n')
+print('Number of training cases is ' + str(len(irisTrainX)))
+print('Number of test cases is ' + str(len(irisTestX)) + '\n')
 
-# print('1-nearest neighbor training error: ' + str(train1NN))
-# print('3-nearest neighbor training error: ' + str(train3NN))
-# print('5-nearest neighbor training error: ' + str(train5NN))
-# print('1-nearest neighbor testing error: ' + str(test1NN))
-# print('3-nearest neighbor testing error: ' + str(test3NN))
-# print('5-nearest neighbor testing error: ' + str(test5NN))
+print('1-nearest neighbor training error: ' + str(train1NN))
+print('3-nearest neighbor training error: ' + str(train3NN))
+print('5-nearest neighbor training error: ' + str(train5NN))
+print('1-nearest neighbor testing error: ' + str(test1NN))
+print('3-nearest neighbor testing error: ' + str(test3NN))
+print('5-nearest neighbor testing error: ' + str(test5NN) + '\n')
 
 
 #______________________5-fold cross-validation________________________________#
@@ -182,19 +182,17 @@ kValues = np.array([1,3,5,7,9,11,13,15,17,19,21,23,25])
 kAverageLoss = np.dstack((kValues, averageLoss))[0]
 
 # Plotting average loss as a function of value of k.
-# mpl.figure(1)
-# mpl.plot(kValues,averageLoss,"bo")
-# mpl.xlim([0,28])
-# mpl.ylim([0,0.3])
-# mpl.xlabel("k")
-# mpl.ylabel("Average loss")
-# mpl.title("Average kNN-model loss")
-# mpl.show()
+mpl.figure(1)
+mpl.plot(kValues,averageLoss,"bo")
+mpl.xlim([0,28])
+mpl.ylim([0,0.3])
+mpl.xlabel("k")
+mpl.ylabel("Average loss")
+mpl.title("Average kNN-model loss")
+mpl.show()
 
 # Repporting results of k_best-NN.
 performance = zeroOneLoss(irisTrainX, irisTrainY, irisTestX, irisTestY, 3)
-
-print('3NN zero-one loss on test data: ' + str(performance))
 
 
 #____________________________Data normalization________________________________#
@@ -214,10 +212,10 @@ sepalNormMeanTrain = standardizedTrainX.mean(0)
 sepalNormVarTrain = standardizedTrainX.var(0)
 
 # Reporting mean, var and std before and after transformation.
-# print('Mean in raw data: ' + str(sepalMean) + '\n')
-# print('Variance in raw data: ' + str(sepalVar) + '\n')
-# print('Mean after standardization: ' + str(sepalNormMeanTrain) + '\n')
-# print('Variance after standardization: ' + str(sepalNormVarTrain) + '\n')
+print('Mean in raw data: ' + str(sepalMean) + '\n')
+print('Variance in raw data: ' + str(sepalVar) + '\n')
+print('Mean after standardization: ' + str(sepalNormMeanTrain) + '\n')
+print('Variance after standardization: ' + str(sepalNormVarTrain) + '\n')
 
 
 # Transforming test data.
@@ -228,8 +226,8 @@ standardizedTestX = np.divide(zeroMeanTestX, sepalStd)
 sepalNormMeanTest = standardizedTestX.mean(0)
 sepalNormVarTest = standardizedTestX.var(0)
 
-# print('Test data mean after standardization: ' + str(sepalNormMeanTest) + '\n')
-# print('Test data variance after standardization: ' + str(sepalNormVarTest))
+print('Test data mean after standardization: ' + str(sepalNormMeanTest) + '\n')
+print('Test data variance after standardization: ' + str(sepalNormVarTest)+'\n')
 
 # Performing 5-fold cross validation again.
 # Merging transformed training data with categorie/classes
@@ -301,18 +299,28 @@ kValuesNorm = np.array([1,3,5,7,9,11,13,15,17,19,21,23,25])
 kAverageLossNorm = np.dstack((kValuesNorm, averageLossNorm))[0]
 
 # #Plotting average loss as a function of value of k of normalized data.
-# mpl.figure(2)
-# mpl.plot(kValuesNorm,averageLossNorm,"bo")
-# mpl.xlim([0,28])
-# mpl.ylim([0,0.3])
-# mpl.xlabel("k")
-# mpl.ylabel("Average loss")
-# mpl.title("Average kNN-model loss on normalized data")
-# mpl.show()
+mpl.figure(2)
+mpl.plot(kValuesNorm,averageLossNorm,"bo")
+mpl.xlim([0,28])
+mpl.ylim([0,0.3])
+mpl.xlabel("k")
+mpl.ylabel("Average loss")
+mpl.title("Average kNN-model loss on normalized data")
+mpl.show()
 
 # Reporting results of k_best-NN.
-performanceNorm = zeroOneLoss(standardizedTrainX, irisTrainY, standardizedTestX,
-                              irisTestY, 11)
 
-print('11NN zero-one loss on normalized test data: ' + str(performanceNorm))
+performanceNormTrain = zeroOneLoss(standardizedTrainX, irisTrainY,
+                                   standardizedTrainX, irisTrainY, 11)
 
+
+performanceNormTest = zeroOneLoss(standardizedTrainX, irisTrainY,
+                                  standardizedTestX, irisTestY, 11)
+
+
+print('3NN zero-one loss on test data: ' + str(performance) + '\n')
+print('11NN zero-one loss on normalized training data: ' +
+      str(performanceNormTrain))
+print('11NN zero-one loss on normalized test data: ' + str(performanceNormTest))
+
+#### END OF SCRIPT ####

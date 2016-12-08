@@ -235,7 +235,56 @@ we get the final result:
 \]
 
 \section{Basic Statistics}
+I did not have time to finish this task.
+
+
 \section{Linear regression}
+I have implemented the linear regression algorithm in \texttt{Python3}. I have
+made substantial use of the libraries \texttt{Pandas}, \texttt{Numpy} and
+\texttt{MatPlotLib}. All the code is gathered in a single script called
+\texttt{regression.py}. Running it using "python3 regression.py" from the terminal
+produces the requested plots and reports required values.
+
+\subsubsection*{Question 5.1.1}
+Look in the script to see how the regression algorithm has been implemented. I
+was a bit in doubt on whether to report \(w\) as a row or coloumn vector. I have
+tried implementing the model so it works with data of all dimensions. Notice
+however that \(N\) must be larger than the number of features for \(X\).
+
+\subsubsection*{Question 5.1.2}
+Below is the parameters of the affine linear model build with the implemented
+linear regression algorithm. Notice that the functions used in this subsection
+are not designed to handle X-data of more than 1 dimension.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{ |p{7cm}||p{3cm}|  }
+ \hline
+ \multicolumn{2}{|c|}{Parameters of affine linear model and mean-squared-error}\\
+ \hline
+ Vector w   & 9.48934569 \\
+ b  & -10.42696146 \\
+ mean-squared-error & 0.01243422 \\ 
+ \hline
+\end{tabular}
+\end{figure}
+
+\subsubsection*{Question 5.1.3}
+Figure \ref{fig:figure3} shows a plot of the data and the regression line
+resulting from putting the data through the regression algorithm I have
+implemented.
+
+\begin{figure}[h]
+  \centering
+\includegraphics[scale=0.5]{figure_3}
+\caption{Plot showing the DanWood.dt data and the resulting regression line from
+  the build model}
+\label{fig:figure3}
+\end{figure}
+
+\subsubsection*{Question 5.2}
+I did not have time to finish this task.
+
 
 \printbibliography
 

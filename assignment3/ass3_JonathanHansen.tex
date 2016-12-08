@@ -1,0 +1,72 @@
+\documentclass{article}
+\input{Macros.tex}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{lipsum} 
+\geometry{a4paper}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\usepackage{comment}
+\bibliography{ref}
+\begin{document}
+\title{Solution for ML F16 assignment 2}
+\author{Jonathan Hansen fdg890}
+\maketitle
+
+\section{K-Nearest Neighbors}
+
+
+\section{Markov’s inequality vs. Hoeffding’s inequality vs. binomial bound}
+\subsubsection*{Question 2.1}
+To bound the probability that \(\sum_{n=1}^{10} X_i\) we start by plugging
+the given values into Markovs inequality:
+
+\[
+P\{S \ge 9\} \le \dfrac{\Em[S]}{9}
+\]
+\
+Using the random variable we are given and linearity of expectation we get:
+
+\[
+P\{\displaystyle\sum_{n=1}^{10} X_i \ge 9\} \le \displaystyle\sum_{n=1}^{10}
+\dfrac{\Em[X_i]}{9}
+\]
+\
+\
+Since we know that \(X_1\),...,\(X_{10}\) are i.i.d Bernoulli random variables
+with bias \(\frac{1}{2}\) the expected value sums to \(\frac{5}{9}\).
+
+\subsubsection*{Question 2.2}
+Focusing at first at the probability side of Hoeffding's inequeality we can use
+the information given, and the result of the sum of expected valus from above,
+to determine \(\epsilon\):
+
+\[
+\mathbb{P}\left\{\displaystyle\sum_{n=1}^{10} X_i -
+\Em\bigg[\displaystyle\sum_{n=1}^{10} X_i \bigg] \ge \epsilon \right\} \Leftrightarrow
+\mathbb{P}\left\{\displaystyle\sum_{n=1}^{10} X_i \ge \epsilon + 5 \right\} \Rightarrow
+\epsilon = 4
+\]
+\
+\
+With this result we can find the bound we are asked for, since we know that
+\(a_i=0\) and \(b_i=1\):
+
+\[
+e^{-2(4)^2/\sum_{n=1}^{10}(1-0)^2} = e^{-\frac{16}{5}}
+\]
+
+\subsubsection*{Question 2.3}
+We can use the normal binomial
+
+
+\subsubsection*{Question 2.4}
+
+
+\section{Probability Theory: Sample Space}
+\section{Probability Theory: Properties of Expectation}
+\section{Probability Theory: Complements of Events}
+
+\printbibliography
+
+\end{document}

@@ -14,6 +14,43 @@
 \maketitle
 
 \section{Finite Hypothesis Space}
+To help us find the two hypothesis spaces, lets first look at the size of the
+input space. With all the numbers in the range from \(0-100\) and two genders
+the size of the input space is:
+
+\[
+\left\vert\chi\right\vert = \{0,\cdots,100\} \times \{male,female\} = 101 \cdot 2 = 202
+\]
+\
+\
+The output space is just the values \(-1\) and \(1\). Hence we can find the
+number of all possible target functions and the size of the hypthesis set as
+
+\[
+\mathcal{H}_1 = 2^{101 \cdot 2} = 2^{202}
+\]
+\
+\
+
+To compute the size of the hypothesis space with the range approach we will
+first find the number of possible ranges. Using the formula on positive
+intervals from \cite{abu2012learning} this gives us
+
+\[
+m_{\mathcal{H}}(N)= \dfrac{1}{2}N^2 + \dfrac{1}{2}N + 1 = \dfrac{1}{2}\cdot 101^2
++ \dfrac{1}{2} \cdot 101 + 1 = 5152
+\]
+\
+\
+
+In this case any one of these ranges are given as the range where it is more
+like than not, that male/females has minors. Since there is still two genders
+this gives us an hypethesis set with size
+
+\[
+\mathcal{H}_2 = 5152^2
+\]
+
 
 \subsubsection*{Question 1.1}
 

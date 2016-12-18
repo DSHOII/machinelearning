@@ -30,7 +30,7 @@ for row in c:
 #Importing 'target'-column from Redshift_Train_Y to an array
 selectRedshift = c.execute ('SELECT target FROM Redshift_Train_Y')
 getRow = c.fetchone ()
- 
+
 Redshift_Y_Array = [getRow]
 
 for getRow in selectRedshift:
@@ -41,7 +41,7 @@ Redshift_Y_Array = NP.matrix(Redshift_Y_Array)
 #Importing data from Redshift_Train_X to an array
 selectRedshift = c.execute ('SELECT * FROM Redshift_Train_X')
 getRow = c.fetchone ()
- 
+
 Redshift_X_Array = [getRow]
 
 for getRow in selectRedshift:
@@ -93,7 +93,7 @@ for row in c:
 #Importing 'target'-column from Redshift_Test_Y to an array
 selectRedshift = c.execute ('SELECT target FROM Redshift_Test_Y')
 getRow = c.fetchone ()
- 
+
 Redshift_Y_Array = [getRow]
 
 for getRow in selectRedshift:
@@ -104,7 +104,7 @@ Redshift_Y_Array = NP.matrix(Redshift_Y_Array)
 #Importing data from Redshift_Test_X to an array
 selectRedshift = c.execute ('SELECT * FROM Redshift_Test_X')
 getRow = c.fetchone ()
- 
+
 Redshift_X_Array = [getRow]
 
 for getRow in selectRedshift:

@@ -14,6 +14,8 @@
 \maketitle
 
 \section{Finite Hypothesis Space}
+\subsubsection*{Question 1.1}
+
 To help us find the two hypothesis spaces, lets first look at the size of the
 input space. With all the numbers in the range from \(0-100\) and two genders
 the size of the input space is:
@@ -52,31 +54,65 @@ this gives us an hypethesis set with size
 \]
 
 
-\subsubsection*{Question 1.1}
-
-\subsubsection*{Question 1.2}
-
-\subsubsection*{Question 1.3}
-
-
-\section{Occam's Razor}
-
-\subsubsection*{Question 2.1}
-
-\subsubsection*{Question 2.2}
-
-\subsubsection*{Question 2.3}
-
 \section{Logistic regression}
-
+All references for equastions in this section points to the course textbook
+\cite{abu2012learning}.
 
 \subsubsection*{Question 3.1}
+From \((3.7)\) we know the formula for conditional properties for
+\(y\) given \(x\), when \(y \in \{\pm 1\}\):
 
+\begin{equation}
+  P(y \vert X) =
+  \begin{cases}
+    h(X) & \text{for}\ y=+1 \\
+    1-h(X) & \text{for}\ y=-1
+  \end{cases}
+\end{equation}
+\
+\
+On page 91 we are given a quantity to minimize that is equivalent to the method
+of maximum likelihood:
 
-\subsubsection*{Question 3.2}
+\begin{equation}
+\dfrac{1}{N}\displaystyle\sum_{n=1}^{N} ln\bigg(\frac{1}{P(y_n \vert X_n} \bigg)
+\end{equation}
+\
+\
+
+If we split the quantity in \((2)\) into two cases based on whether \(y=+1\) or
+\(y=-1\) and substitute the formulas from \((1)\) into this expression, we
+almost have what we want to show. The final thing to do is simply to realize
+that scaling with the constant \(N\) does not change the minimum or maximum
+value why we can ommit this.
+\vspace{1cm}
 
 
 \subsubsection*{Question 3.3}
+I have implemented the logistic regression classifier in \texttt{Python3}. I
+have made substantial use of the libraries \texttt{Pandas} and
+\texttt{Numpy}. All the code is gathered in a single script called
+\texttt{logreg.py}. Running it using "python3 logreg.py" from the terminal
+reports the required values.
+
+I have implemented the logistic regression using the "steepest descent"
+approach. Building the affine linear model gives the paramters shown in the
+table below. Using these parameters to perform a classication yields the 0-1
+losses that are also shown in the table.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{ |p{5cm}||p{5cm}|  }
+ \hline
+ \multicolumn{2}{|c|}{Parameters of the affine linear model and loss}\\
+ \hline
+ weights   & [0.68113276 \ \ \ -2.44553796] \\
+ b  & -2.94487779088 \\
+ Training data loss & 9.6774 \% \\
+ Test data loss & 7.6923 \% \\
+ \hline
+\end{tabular}
+\end{figure}
 
 
 \printbibliography

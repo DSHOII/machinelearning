@@ -133,7 +133,7 @@ mpl.ylabel("Principal component 2")
 mpl.title("Principal two components scatterplot")
 mpl.show()
 
-#Assigns datapoints to one of two clusters 
+#Assigns datapoints to one of two clusters
 def clusterAssign(dataset,centroid1,centroid2):
 	cluster1 = NP.empty((0,21),float)
 	cluster2 = NP.empty((0,21),float)
@@ -145,7 +145,7 @@ def clusterAssign(dataset,centroid1,centroid2):
 
 	return cluster1, cluster2
 
-#Iterates cluster assigning and cetroid selection.
+#Iterates cluster assigning and centroid selection.
 def twoMeansClustering(dataset,startCentroid1,startCentroid2):
 	count = 0
 	centroid1 = startCentroid1
